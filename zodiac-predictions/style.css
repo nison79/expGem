@@ -1,0 +1,246 @@
+:root {
+    --bg-color-light: #f0f0f0;
+    --text-color-light: #333;
+    --card-bg-light: #fff;
+    --card-shadow-light: rgba(0, 0, 0, 0.1);
+    --button-bg-light: #ddd; /* Lighter button background for light theme */
+    --button-border-light: #ccc; /* Border for light theme switch */
+    --button-text-light: white;
+    --button-hover-light: #333;
+    --svg-stroke-light: currentColor; /* Use text color for SVGs */
+
+    --bg-color-dark: #222;
+    --text-color-dark: #eee;
+    --card-bg-dark: #333;
+    --card-shadow-dark: rgba(255, 255, 255, 0.1);
+    --button-bg-dark: #777;
+    --button-text-dark: white;
+    --button-hover-dark: #999;
+    --svg-stroke-dark: #eee; /* Lighter stroke for dark theme */
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    /* Adjust header container now that button is positioned separately */
+    justify-content: center; /* Center the title */
+    align-items: center;
+    width: 100%;
+    max-width: 650px; /* Adjust as needed */
+    margin-bottom: 10px;
+    position: relative; /* Keep for potential future header elements */
+}
+
+/* Theme Switch Button Styles - Fixed Position */
+.theme-switch {
+    position: fixed; /* Position relative to the viewport */
+    top: 20px;       /* Distance from top */
+    right: 20px;      /* Distance from right */
+    z-index: 1000;   /* Ensure it's above other content */
+    display: inline-flex; /* Align icons */
+    align-items: center;
+    padding: 5px; /* Adjust padding */
+    font-size: 1.5em; /* Adjust icon size */
+    cursor: pointer;
+    background-color: var(--bg-color-light); /* Use page background for light theme */
+    border: 1px solid var(--button-border-light); /* Add border for light theme */
+    border-radius: 20px; /* Make it round */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    overflow: hidden; /* Hide overflowing parts if needed */
+    width: 60px; /* Fixed width */
+    height: 30px; /* Fixed height */
+    box-sizing: border-box;
+} /* <-- Added missing closing brace */
+body.dark-theme .theme-switch {
+    background-color: var(--button-bg-dark);
+    border-color: var(--button-bg-dark); /* Match border to background in dark */
+}
+
+.theme-switch .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    line-height: 1; /* Ensure icon vertical alignment */
+}
+
+.theme-switch .sun {
+    left: 5px; /* Position sun icon */
+    opacity: 1;
+}
+
+.theme-switch .moon {
+    right: 5px; /* Position moon icon */
+    opacity: 0;
+}
+
+/* Dark theme icon visibility */
+body.dark-theme .theme-switch .sun {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px); /* Optional: slide out */
+}
+
+body.dark-theme .theme-switch .moon {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0); /* Optional: slide in */
+}
+
+/* Adjust hover effect */
+.theme-switch:hover {
+     border-color: var(--text-color-light); /* Highlight border on hover in light */
+}
+body.dark-theme .theme-switch:hover {
+    background-color: var(--button-hover-dark); /* Darken background slightly on hover */
+    border-color: var(--button-hover-dark);
+}
+
+
+h1, h2 {
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+}
+body.dark-theme h1,
+body.dark-theme h2 {
+    color: var(--text-color-dark);
+}
+
+
+#zodiac-selection {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Adjust columns as needed */
+    gap: 20px;
+    margin-top: 20px;
+    max-width: 600px; /* Limit width */
+}
+
+.zodiac-sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--card-bg-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--card-shadow-light);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+body.dark-theme .zodiac-sign {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 2px 4px var(--card-shadow-dark);
+}
+
+.zodiac-sign:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px var(--card-shadow-light);
+}
+body.dark-theme .zodiac-sign:hover {
+     box-shadow: 0 4px 8px var(--card-shadow-dark);
+}
+
+
+.zodiac-sign svg {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    margin-bottom: 10px;
+    stroke: var(--svg-stroke-light); /* Apply theme stroke */
+    transition: stroke 0.3s ease;
+}
+body.dark-theme .zodiac-sign svg {
+    stroke: var(--svg-stroke-dark);
+}
+
+
+.zodiac-sign span {
+    font-weight: bold;
+    color: var(--text-color-light); /* Use themed text color */
+    transition: color 0.3s ease;
+}
+
+body.dark-theme .zodiac-sign span {
+    color: var(--text-color-dark);
+}
+
+
+#prediction-display {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--card-bg-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--card-shadow-light);
+    max-width: 600px;
+    width: 100%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-theme #prediction-display {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 2px 4px var(--card-shadow-dark);
+}
+
+
+#prediction-content div {
+    margin-bottom: 15px;
+}
+
+#prediction-content h3 {
+    color: var(--text-color-light); /* Use themed text color */
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee; /* Keep border light for now */
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+body.dark-theme #prediction-content h3 {
+     color: var(--text-color-dark);
+     border-bottom-color: #555; /* Darker border */
+}
+
+
+#prediction-content p {
+    color: var(--text-color-light); /* Use themed text color */
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+body.dark-theme #prediction-content p {
+     color: var(--text-color-dark);
+}
+
+
+#back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: var(--button-bg-light); /* Use specific button color */
+    color: var(--button-text-light);
+    border: none; /* Standard buttons have no border */
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+body.dark-theme #back-button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+}
+
+
+#back-button:hover {
+    background-color: var(--button-hover-light);
+}
+body.dark-theme #back-button:hover {
+    background-color: var(--button-hover-dark);
+}

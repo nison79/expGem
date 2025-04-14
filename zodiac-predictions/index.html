@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Daily Predictions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header-container">
+        <h1>Choose Your Zodiac Sign</h1>
+        <button id="theme-toggle" class="theme-switch" aria-label="Toggle theme">
+            <span class="icon sun">☀️</span>
+            <span class="icon moon">🌙</span>
+        </button>
+    </div>
+    <div id="zodiac-selection">
+        <!-- Zodiac signs will be added here -->
+    </div>
+
+    <div id="prediction-display" style="display: none;">
+        <h2>Today's Prediction for <span id="selected-sign"></span></h2>
+        <div id="prediction-content">
+            <!-- Predictions will be loaded here -->
+        </div>
+        <button id="back-button">Back to Selection</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
